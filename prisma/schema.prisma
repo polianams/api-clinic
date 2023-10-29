@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Consultations {
+  id                 Int      @id @default(autoincrement())
+  consultationType   String?  @db.VarChar(255)
+  consultationStatus Boolean  @default(true)
+  consultationValue  Int
+  patientId          Int
+  Patients           Patients @relation(fields: [patientId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Doctors {
+  id          Int         @id @default(autoincrement())
+  name        String      @db.VarChar(255)
+  email       String      @unique @db.VarChar(255)
+  specialtyId Int
+  status      Boolean     @default(false)
+  Specialties Specialties @relation(fields: [specialtyId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Patients {
+  id            Int             @id @default(autoincrement())
+  name          String
+  email         String          @unique @db.VarChar(255)
+  password      String          @db.VarChar(255)
+  Consultations Consultations[]
+}
+
+model Specialties {
+  id        Int       @id @default(autoincrement())
+  specialty String    @unique @db.VarChar(255)
+  value     Int
+  Doctors   Doctors[]
+}
