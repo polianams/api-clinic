@@ -5,10 +5,10 @@ import { errorsGeneric } from "../utils/errorMessages";
 const errorMiddleware = (app: express.Application) => {
   app.use(express.json());
 
-  app.use((err: Error, req, res, next: NextFunction) => {
-    if (err instanceof Error) {
-      return res.status(400).json({
-        mensagem: err.message,
+  app.use((error: Error, req, res, next: NextFunction) => {
+    if (error instanceof Error) {
+      return res.status(500).json({
+        mensagem: error.message,
       });
     }
 
