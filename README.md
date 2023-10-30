@@ -60,7 +60,7 @@ Até o momento, é possível realizar as seguintes operações:
 
 1. Clone este repositório em sua máquina local:
 ```
-git clone https://github.com/seu_usuario/api-rest-ts-typeORM.git
+git clone https://github.com/seu_usuario/api-clinic.git
 ```
 2. Navegue até o diretório do projeto:
 ```
