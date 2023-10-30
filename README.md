@@ -1,4 +1,4 @@
-# 🛒 Back-end - API REST de um Consultório com Prisma, PostgreSQL e Typescript
+# 💊 Back-end - API REST de um Consultório com Prisma, PostgreSQL e Typescript
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/polianams/api-clinic?color=blue">
