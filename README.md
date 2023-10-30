@@ -64,7 +64,7 @@ git clone https://github.com/seu_usuario/api-clinic.git
 ```
 2. Navegue até o diretório do projeto:
 ```
-cd api-rest-ts-typeORM
+cd api-clinic
 ```
 3. Instale as dependências:
 ```
