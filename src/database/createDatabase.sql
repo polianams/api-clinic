@@ -32,3 +32,11 @@ CREATE TABLE
         "patientId" INT NOT NULL,
         FOREIGN KEY ("patientId") REFERENCES "public"."Patients" (id)
     );
+
+CREATE TABLE
+    "public"."Admin" (
+        id SERIAL PRIMARY KEY,
+        username TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+    );

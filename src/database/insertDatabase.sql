@@ -76,3 +76,11 @@ VALUES (
         'michaeljohnson@example.com',
         'securepass789'
     );
+
+INSERT INTO
+    "public"."Admin" (username, email, password)
+VALUES (
+        'euler',
+        'pmrtins@gmail.com',
+        '2.71828'
+    );

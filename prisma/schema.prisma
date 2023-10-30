@@ -5,6 +5,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Consultations {
@@ -38,4 +39,11 @@ model Specialties {
   specialty String    @unique @db.VarChar(255)
   value     Int
   Doctors   Doctors[]
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String
+  email    String
+  password String
 }

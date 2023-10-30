@@ -1,29 +1,33 @@
 import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
+import { PrismaClient, Admin } from "@prisma/client";
+
 import { passwordJwt } from "../config/authConfig";
 import { errorsGeneric } from "../utils/errorMessages";
 import { successfulMessages } from "../utils/successMessages";
+import { BadRequestError, UnauthorizedError } from "../helpers/errorHelp";
 
-const loginAdminController = async (req, res) => {
+const prisma = new PrismaClient();
+
+export const loginAdminController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).json({
-      message: errorsGeneric.authenticationFailed,
-    });
+    throw new BadRequestError(errorsGeneric.authenticationFailed);
   }
 
-  const admin = {
-    username: "Leonhard Euler",
-    password: "2.718",
-  };
+  const admin: Admin | null = await prisma.admin.findFirst({
+    where: {
+      username,
+      password,
+    },
+  });
 
-  if (username !== admin.username || password !== admin.password) {
-    return res
-      .status(401)
-      .json({ message: errorsGeneric.authenticationFailed });
+  if (!admin || username !== admin.username || password !== admin.password) {
+    throw new UnauthorizedError(errorsGeneric.authenticationFailed);
   }
 
-  const token = jwt.sign({ username }, passwordJwt, {
+  const token: string = jwt.sign({ username }, passwordJwt, {
     expiresIn: "6h",
   });
 
@@ -32,5 +36,3 @@ const loginAdminController = async (req, res) => {
     token,
   });
 };
-
-export { loginAdminController };
