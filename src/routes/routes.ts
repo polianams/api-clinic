@@ -1,3 +1,4 @@
+import { checkLoggedMiddleware } from "./../middlewares/authMiddleware";
 import { Router } from "express";
 import { specialtiesController } from "../controllers/specialtiesController";
 import { loginAdminController } from "../controllers/loginAdminController";
