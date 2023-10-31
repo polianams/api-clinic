@@ -13,5 +13,6 @@ routes.get("/", (req, res) => {
 
 routes.get("/specialties", specialtiesController);
 routes.post("/login/admin", loginAdminController);
+routes.get("/specialties/:id", checkLoggedMiddleware, specialtiesController);
 
 export { routes };
