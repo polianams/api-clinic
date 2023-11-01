@@ -23,3 +23,9 @@ export class BadRequestError extends ApiError {
     super(400, message);
   }
 }
+
+export class ConflictError extends ApiError {
+  constructor(message: string) {
+    super(409, message);
+  }
+}

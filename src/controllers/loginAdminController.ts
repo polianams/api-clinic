@@ -3,16 +3,12 @@ import { Request, Response } from "express";
 import { PrismaClient, Admin } from "@prisma/client";
 
 import { passwordJwt } from "../config/authConfig";
-import { BadRequestError, UnauthorizedError } from "../helpers/errorHelp";
+import { UnauthorizedError } from "../helpers/errorHelp";
 
 const prisma = new PrismaClient();
 
 export const loginAdminController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
-  if (!username || !password) {
-    throw new BadRequestError("Username and password are required.");
-  }
 
   const admin: Admin | null = await prisma.admin.findFirst({
     where: {

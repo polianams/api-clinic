@@ -1,7 +1,8 @@
-import { checkLoggedMiddleware } from "./../middlewares/authMiddleware";
 import { Router } from "express";
+import { checkLoggedMiddleware } from "./../middlewares/authMiddleware";
 import { specialtiesController } from "../controllers/specialtiesController";
 import { loginAdminController } from "../controllers/loginAdminController";
+import { createPatientController } from "../controllers/patientsController";
 
 const routes = Router();
 
@@ -14,5 +15,6 @@ routes.get("/", (req, res) => {
 routes.get("/specialties", specialtiesController);
 routes.post("/login/admin", loginAdminController);
 routes.get("/specialties/:id", checkLoggedMiddleware, specialtiesController);
+routes.post("/patient", checkLoggedMiddleware, createPatientController);
 
 export { routes };

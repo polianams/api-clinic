@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { NextFunction, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { passwordJwt } from "../config/authConfig";
 import { BadRequestError, UnauthorizedError } from "../helpers/errorHelp";
