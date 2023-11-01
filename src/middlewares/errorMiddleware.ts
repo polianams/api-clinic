@@ -12,5 +12,6 @@ export const errorMiddleware = (
   const message = error.statusCode
     ? error.message
     : errorsGeneric.internalServerError;
+  console.log(error.message);
   return res.status(statusCode).json({ message });
 };
